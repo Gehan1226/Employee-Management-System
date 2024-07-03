@@ -17,18 +17,24 @@ public class EmployeeController {
 
     @PostMapping("add-employee")
     @ResponseStatus(HttpStatus.CREATED)
-    public void persist(@RequestBody Employee employee){
+    public void persist(@RequestBody Employee employee) {
         employeeService.addEmployee(employee);
     }
 
     @GetMapping("get-all")
-    public List<Employee> getAll(){return employeeService.getAll();
+    public List<Employee> getAll() {
+        return employeeService.getAll();
     }
 
     @DeleteMapping("/delete-emp/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String deleteEmployee(@PathVariable Long id){
+    public String delete(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
         return "Deleted";
+    }
+
+    @PutMapping("/update-employee")
+    public void update(@RequestBody Employee employee) {
+        employeeService.updateEmployee(employee);
     }
 }

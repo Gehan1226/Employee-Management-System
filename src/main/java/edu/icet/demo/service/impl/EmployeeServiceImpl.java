@@ -19,8 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addEmployee(Employee employee) {
-        EmployeeEntity employeeEntity = new ObjectMapper().convertValue(employee, EmployeeEntity.class);
-        employeeRepository.save(employeeEntity);
+        employeeRepository.save(new ObjectMapper().convertValue(employee, EmployeeEntity.class));
     }
 
     @Override
@@ -37,6 +36,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteEmployee(Long id) {
         if (employeeRepository.existsById(id)){
             employeeRepository.deleteById(id);
+        }
+    }
+
+    @Override
+    public void updateEmployee(Employee employee) {
+        if (employeeRepository.existsById(employee.getId())){
+            employeeRepository.save(new ObjectMapper().convertValue(employee, EmployeeEntity.class));
         }
     }
 }
