@@ -1,10 +1,11 @@
-package edu.icet.demo.employeeController;
+package edu.icet.demo.Controller;
 
 import edu.icet.demo.dto.Employee;
-import edu.icet.demo.entity.EmployeeEntity;
 import edu.icet.demo.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/emp-controller")
@@ -19,6 +20,6 @@ public class EmployeeController {
     }
 
     @GetMapping("get-all")
-    public Iterable<EmployeeEntity> getAll(){return employeeService.getAll();
+    public List<Employee> getAll(){return employeeService.getAll();
     }
 }

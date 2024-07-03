@@ -8,6 +8,9 @@ import edu.icet.demo.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -21,7 +24,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Iterable<EmployeeEntity> getAll() {
-        return employeeRepository.findAll();
+    public List<Employee> getAll() {
+        List<Employee> employeeList = new ArrayList<>();
+
+        employeeRepository.findAll().forEach(employeeEntity ->{
+            employeeList.add(new ObjectMapper().convertValue(employeeEntity, Employee.class));
+        });
+        return employeeList;
     }
 }
