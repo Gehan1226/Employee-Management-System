@@ -27,9 +27,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getAll() {
         List<Employee> employeeList = new ArrayList<>();
 
-        employeeRepository.findAll().forEach(employeeEntity ->{
-            employeeList.add(new ObjectMapper().convertValue(employeeEntity, Employee.class));
-        });
+        employeeRepository.findAll().forEach(employeeEntity ->
+                employeeList.add(new ObjectMapper().convertValue(employeeEntity, Employee.class)
+        ));
         return employeeList;
+    }
+
+    @Override
+    public void deleteEmployee(Long id) {
+        if (employeeRepository.existsById(id)){
+            employeeRepository.deleteById(id);
+        }
     }
 }
