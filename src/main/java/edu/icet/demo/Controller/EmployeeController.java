@@ -37,4 +37,9 @@ public class EmployeeController {
     public void update(@RequestBody Employee employee) {
         employeeService.updateEmployee(employee);
     }
+
+    @GetMapping("/find-by-id/{id}")
+    public Employee findById(@PathVariable Long id){
+        return employeeService.findById(id);
+    }
 }

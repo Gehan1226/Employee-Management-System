@@ -45,4 +45,14 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeRepository.save(new ObjectMapper().convertValue(employee, EmployeeEntity.class));
         }
     }
+
+    @Override
+    public Employee findById(Long id) {
+        if (employeeRepository.findById(id).isPresent()){
+            return new ObjectMapper().convertValue(
+                    employeeRepository.findById(id).get(), Employee.class
+            );
+        }
+        return new Employee();
+    }
 }
