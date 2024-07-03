@@ -1,14 +1,18 @@
-package edu.icet.demo.dto;
+package edu.icet.demo.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Getter
 @Setter
 @ToString
-public class Employee {
+@Table(name = "employee")
+public class EmployeeEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
@@ -16,3 +20,4 @@ public class Employee {
     private String departmentId;
     private String roleId;
 }
+
