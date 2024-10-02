@@ -25,9 +25,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<Role> getAll() {
         List<Role> roleList= new ArrayList<>();
-        repository.findAll().forEach(obj->{
-            roleList.add(mapper.map(obj, Role.class));
-        });
+        repository.findAll().forEach(obj-> roleList.add(mapper.map(obj, Role.class)));
         return roleList;
     }
 
